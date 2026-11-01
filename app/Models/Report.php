@@ -6,15 +6,17 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Storage;
 
+#[\Illuminate\Database\Eloquent\Attributes\ObservedBy([\App\Observers\ReportObserver::class])]
 class Report extends Model
 {
-    public const STATUS_DIKIRIM          = 'dikirim';
-    public const STATUS_DITINJAU         = 'ditinjau';
-    public const STATUS_PERLU_PERBAIKAN  = 'perlu_perbaikan';
+    public const STATUS_DIKIRIM = 'dikirim';
+    public const STATUS_DITINJAU = 'ditinjau';
+    public const STATUS_PERLU_PERBAIKAN = 'perlu_perbaikan';
     public const STATUS_PERLU_DITERUSKAN = 'perlu_diteruskan';
     public const STATUS_TELAH_DITERUSKAN = 'telah_diteruskan';
-    public const STATUS_SELESAI          = 'selesai';
+    public const STATUS_SELESAI = 'selesai';
 
     public const STATUSES = [
         self::STATUS_DIKIRIM,
@@ -37,6 +39,11 @@ class Report extends Model
     protected function casts(): array
     {
         return ['incident_at' => 'datetime'];
+    }
+
+    public function getEvidenceUrlAttribute(): ?string
+    {
+        return $this->evidence_path ? Storage::url($this->evidence_path) : null;
     }
 
     public function isEditable(): bool
