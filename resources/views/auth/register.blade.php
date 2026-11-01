@@ -1,45 +1,42 @@
-<!DOCTYPE html>
-<html lang="id">
+@extends('layouts.app')
+@section('title', 'Daftar')
 
-<head>
-    <title>Daftar Akun</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-</head>
-
-<body class="h-screen bg-gray-100 flex justify-center items-center">
-    <main class="bg-white p-8 rounded-lg shadow-md w-full max-w-sm">
-        <h2 class="text-2xl font-bold mb-4">Daftar Akun</h2>
-
-        @if ($errors->any())
-            <div style="color: red;">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
+@section('content')
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h1 class="h4 mb-3">Daftar sebagai Pelapor</h1>
+                <form method="POST" action="{{ route('register.attempt') }}">
+                    @csrf
+                    <div class="mb-3">
+                        <label class="form-label" for="name">Nama lengkap</label>
+                        <input type="text" id="name" name="name" value="{{ old('name') }}" maxlength="255"
+                               class="form-control @error('name') is-invalid @enderror" required autofocus>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="email">Email</label>
+                        <input type="email" id="email" name="email" value="{{ old('email') }}" maxlength="255"
+                               class="form-control @error('email') is-invalid @enderror" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="password">Password</label>
+                        <input type="password" id="password" name="password" minlength="8"
+                               class="form-control @error('password') is-invalid @enderror" required>
+                        <div class="form-text">Minimal 8 karakter.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="password_confirmation">Konfirmasi password</label>
+                        <input type="password" id="password_confirmation" name="password_confirmation" minlength="8"
+                               class="form-control" required>
+                    </div>
+                    <button class="btn btn-primary w-100">Daftar</button>
+                </form>
+                <div class="text-center mt-3 small">
+                    Sudah punya akun? <a href="{{ route('login') }}">Login</a>
+                </div>
             </div>
-        @endif
-
-        <form action="{{ route('register') }}" method="POST" class="flex flex-col gap-4">
-            @csrf
-            <label>Email:</label>
-            <input type="email" name="email" value="{{ old('email') }}" required
-                class="border border-gray-300 rounded-md px-2 py-1">
-
-            <label>Username:</label>
-            <input type="text" name="name" value="{{ old('name') }}" required
-                class="border border-gray-300 rounded-md px-2 py-1">
-
-            <label>Password:</label>
-            <input type="password" name="password" required class="border border-gray-300 rounded-md px-2 py-1">
-
-            <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">
-                Daftar
-            </button>
-        </form>
-        <p>Sudah punya akun? <a href="{{ route('login') }}" class="text-blue-500 hover:underline">Login di sini</a></p>
-    </main>
-</body>
-
-</html>
+        </div>
+    </div>
+</div>
+@endsection

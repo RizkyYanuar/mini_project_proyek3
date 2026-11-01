@@ -17,8 +17,6 @@ return new class extends Migration
             $table->string('npsn')->nullable()->unique();
             $table->string('address')->nullable();
             $table->string('kecamatan')->nullable();
-            $table->string('kota_kab')->nullable();
-            $table->string('provinsi')->nullable();
             $table->timestamps();
         });
     }

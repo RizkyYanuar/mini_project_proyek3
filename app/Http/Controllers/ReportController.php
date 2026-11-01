@@ -145,7 +145,7 @@ class ReportController extends Controller implements HasMiddleware
             ],
             'incident_time' => ['required', 'date', 'before_or_equal:now'],
             'title' => ['required', 'string', 'max:150'],
-            'description' => ['required', 'string', 'min:20', 'max:3000'],
+            'description' => ['required', 'string', 'min:0', 'max:3000'],
             'affected_count' => ['nullable', 'integer', 'min:0', 'max:100000'],
             'evidence' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],
         ]);

@@ -1,49 +1,31 @@
-<!DOCTYPE html>
-<html lang="id">
+@extends('layouts.app')
+@section('title', 'Login')
 
-<head>
-    <title>Login</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-
-<body class="h-screen bg-gray-100 flex justify-center items-center">
-    <main class="bg-white p-8 rounded-lg shadow-md w-full max-w-sm">
-        <h2 class="text-2xl font-bold mb-4">Login</h2>
-
-        @if ($errors->any())
-            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 text-sm">
-                <ul class="list-disc list-inside">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
+@section('content')
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h1 class="h4 mb-3">Login</h1>
+                <form method="POST" action="{{ route('login.attempt') }}">
+                    @csrf
+                    <div class="mb-3">
+                        <label class="form-label" for="email">Email</label>
+                        <input type="email" id="email" name="email" value="{{ old('email') }}" class="form-control" required autofocus>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="password">Password</label>
+                        <input type="password" id="password" name="password" class="form-control" required>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input type="checkbox" class="form-check-input" id="remember" name="remember" value="1">
+                        <label class="form-check-label" for="remember">Ingat saya</label>
+                    </div>
+                    Belum punya akun? <a href="{{ route('register') }}">Daftar</a>
+                    <button class="btn btn-primary w-100">Masuk</button>
+                </form>
             </div>
-        @endif
-
-        <form action="{{ route('login') }}" method="POST" class="flex flex-col gap-4">
-            @csrf
-            
-            <div class="flex flex-col gap-1">
-                <label class="font-medium text-gray-700">Email atau Username:</label>
-                <input type="text" name="login" value="{{ old('login') }}" required
-                    class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-            </div>
-
-            <div class="flex flex-col gap-1">
-                <label class="font-medium text-gray-700">Password:</label>
-                <input type="password" name="password" required
-                    class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-            </div>
-
-            <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 font-semibold mt-2 transition-colors">
-                Login
-            </button>
-        </form>
-
-        <p class="mt-4 text-sm text-center text-gray-600">
-            Belum punya akun? <a href="{{ route('register') }}" class="text-blue-500 hover:underline">Daftar di sini</a>
-        </p>
-    </main>
-</body>
-
-</html>
+        </div>
+    </div>
+</div>
+@endsection

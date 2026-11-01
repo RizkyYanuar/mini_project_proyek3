@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Storage;
 
-#[\Illuminate\Database\Eloquent\Attributes\ObservedBy([\App\Observers\ReportObserver::class])]
 class Report extends Model
 {
     public const STATUS_DIKIRIM = 'dikirim';

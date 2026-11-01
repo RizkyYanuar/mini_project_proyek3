@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('id_user')->constrained('users', 'id_user');
             $table->string('recipient_type');
             $table->string('recipient_name');
-            $table->text('note');
+            $table->text('note')->nullable();
             $table->dateTime('forwarded_at');
             $table->timestamps();
         });
