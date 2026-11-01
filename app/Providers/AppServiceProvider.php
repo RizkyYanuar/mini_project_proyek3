@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // ---- Koordinator ----
+        // Koordinator
         Gate::define(
             'manage-roles',
             fn(User $user): bool => $user->role === 'koordinator'
@@ -38,13 +38,13 @@ class AppServiceProvider extends ServiceProvider
             fn(User $user): bool => $user->role === 'koordinator'
         );
 
-        // ---- Pemantau Komunitas ----
+        // Pemantau Komunitas
         Gate::define(
             'review-report',
             fn(User $user): bool => $user->role === 'pemantau'
         );
 
-        // ---- Pemantau & Koordinator ----
+        // Pemantau & Koordinator
         Gate::define(
             'view-recap',
             fn(User $user): bool => in_array(
@@ -54,13 +54,13 @@ class AppServiceProvider extends ServiceProvider
             )
         );
 
-        // ---- Pelapor ----
+        // Pelapor
         Gate::define(
             'create-report',
             fn(User $user): bool => $user->role === 'pelapor'
         );
 
-        // ---- Berbasis ownership ----
+        // Berbasis ownership
         Gate::define(
             'view-report',
             fn(User $user, Report $report): bool =>
