@@ -19,7 +19,7 @@ return new class extends Migration
             $table->dateTime('incident_time');
             $table->string('title');
             $table->text('description');
-            $table->unsignedInteger('affected_count');
+            $table->unsignedInteger('affected_count')->nullable();
             $table->string('status', 20)->index();
             $table->string('evidence_path')->nullable();
             $table->string('evidence_original_name')->nullable();

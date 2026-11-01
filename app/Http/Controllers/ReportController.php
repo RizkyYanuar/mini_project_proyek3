@@ -143,7 +143,7 @@ class ReportController extends Controller implements HasMiddleware
                 Rule::exists('meal_distributions', 'id_distribution')
                     ->where('id_school', $request->input('id_school')),
             ],
-            'incident_at' => ['required', 'date', 'before_or_equal:now'],
+            'incident_time' => ['required', 'date', 'before_or_equal:now'],
             'title' => ['required', 'string', 'max:150'],
             'description' => ['required', 'string', 'min:20', 'max:3000'],
             'affected_count' => ['nullable', 'integer', 'min:0', 'max:100000'],
@@ -155,9 +155,9 @@ class ReportController extends Controller implements HasMiddleware
     {
         $distribution = MealDistribution::findOrFail($data['id_distribution']);
 
-        if (Carbon::parse($data['incident_at'])->lt($distribution->distribution_date->copy()->startOfDay())) {
+        if (Carbon::parse($data['incident_time'])->lt($distribution->distribution_date->copy()->startOfDay())) {
             throw ValidationException::withMessages([
-                'incident_at' => 'Waktu kejadian tidak boleh sebelum tanggal distribusi.',
+                'incident_time' => 'Waktu kejadian tidak boleh sebelum tanggal distribusi.',
             ]);
         }
 

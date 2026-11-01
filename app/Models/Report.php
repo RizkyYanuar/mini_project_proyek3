@@ -32,13 +32,13 @@ class Report extends Model
     protected $primaryKey = 'id_report';
 
     protected $fillable = [
-        'id_school', 'id_distribution', 'incident_at', 'title', 'description',
+        'id_school', 'id_distribution', 'incident_time', 'title', 'description',
         'affected_count', 'evidence_path', 'evidence_original_name', 'evidence_mime',
     ];
 
     protected function casts(): array
     {
-        return ['incident_at' => 'datetime'];
+        return ['incident_time' => 'datetime'];
     }
 
     public function getEvidenceUrlAttribute(): ?string

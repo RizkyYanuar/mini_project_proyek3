@@ -19,10 +19,10 @@
     </div>
 
     <div class="col-md-6">
-        <label class="form-label" for="incident_at">Waktu kejadian</label>
-        <input type="datetime-local" name="incident_at" id="incident_at"
-               value="{{ old('incident_at', optional($report->incident_at)->format('Y-m-d\TH:i')) }}"
-               class="form-control @error('incident_at') is-invalid @enderror" required>
+        <label class="form-label" for="incident_time">Waktu kejadian</label>
+        <input type="datetime-local" name="incident_time" id="incident_time"
+               value="{{ old('incident_time', optional($report->incident_time)->format('Y-m-d\TH:i')) }}"
+               class="form-control @error('incident_time') is-invalid @enderror" required>
     </div>
 
     <div class="col-md-6">

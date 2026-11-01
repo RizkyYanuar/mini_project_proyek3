@@ -27,7 +27,7 @@
                     </dd>
 
                     <dt class="col-sm-4">Waktu kejadian</dt>
-                    <dd class="col-sm-8">{{ $report->incident_at->format('d M Y H:i') }}</dd>
+                    <dd class="col-sm-8">{{ $report->incident_time->format('d M Y H:i') }}</dd>
 
                     <dt class="col-sm-4">Perkiraan terdampak</dt>
                     <dd class="col-sm-8">{{ $report->affected_count ?? '-' }}</dd>

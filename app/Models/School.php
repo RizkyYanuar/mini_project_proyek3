@@ -10,7 +10,7 @@ class School extends Model
 {
     protected $primaryKey = 'id_school';
 
-    protected $fillable = ['name', 'npsn', 'address', 'district'];
+    protected $fillable = ['name', 'npsn', 'address', 'kecamatan'];
 
     public function distributions(): HasMany
     {

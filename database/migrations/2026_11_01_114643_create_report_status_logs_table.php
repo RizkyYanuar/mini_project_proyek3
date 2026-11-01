@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('id_report')->constrained('reports', 'id_report');
             $table->foreignId('id_user')->constrained('users', 'id_user')->nullable();
             $table->string('action');
-            $table->string('old_status', 20);
+            $table->string('old_status', 20)->nullable();
             $table->string('new_status', 20);
             $table->timestamps();
         });

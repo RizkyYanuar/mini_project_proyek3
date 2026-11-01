@@ -64,7 +64,7 @@ class SchoolController extends Controller implements HasMiddleware
             'name' => ['required', 'string', 'max:150'],
             'npsn' => ['nullable', 'string', 'max:20', Rule::unique('schools', 'npsn')->ignore($school?->id_school, 'id_school')],
             'address' => ['nullable', 'string', 'max:500'],
-            'district' => ['nullable', 'string', 'max:100'],
+            'kecamatan' => ['nullable', 'string', 'max:100'],
         ]);
     }
 }
