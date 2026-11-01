@@ -17,10 +17,6 @@
                         <label class="form-label" for="password">Password</label>
                         <input type="password" id="password" name="password" class="form-control" required>
                     </div>
-                    <div class="form-check mb-3">
-                        <input type="checkbox" class="form-check-input" id="remember" name="remember" value="1">
-                        <label class="form-check-label" for="remember">Ingat saya</label>
-                    </div>
                     Belum punya akun? <a href="{{ route('register') }}">Daftar</a>
                     <button class="btn btn-primary w-100">Masuk</button>
                 </form>

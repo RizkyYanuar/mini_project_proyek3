@@ -8,6 +8,8 @@ use App\Models\Report;
 use App\Models\User;
 use App\Observers\ReportObserver;
 use App\Observers\UserObserver;
+use Illuminate\Pagination\Paginator;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Paginator::useBootstrapFive();
         // Koordinator
         Gate::define(
             'manage-roles',
@@ -64,16 +67,16 @@ class AppServiceProvider extends ServiceProvider
         Gate::define(
             'view-report',
             fn(User $user, Report $report): bool =>
-                $user->role === 'pelapor'
-                    ? $user->id_user === $report->id_user
-                    : in_array($user->role, ['pemantau', 'koordinator'], true)
+            $user->role === 'pelapor'
+                ? $user->id_user === $report->id_user
+                : in_array($user->role, ['pemantau', 'koordinator'], true)
         );
         Gate::define(
             'update-report',
             fn(User $user, Report $report): bool =>
-                $user->role === 'pelapor'
-                    && $user->id_user === $report->id_user
-                    && $report->isEditable()
+            $user->role === 'pelapor'
+                && $user->id_user === $report->id_user
+                && $report->isEditable()
         );
 
         User::observe(UserObserver::class);

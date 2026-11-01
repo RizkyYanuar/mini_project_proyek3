@@ -39,7 +39,7 @@ class ReportController extends Controller implements HasMiddleware
             ->when($user->isPelapor(), fn ($q) => $q->where('id_user', $user->id_user))
             ->filter($filters)
             ->latest()
-            ->paginate(10)
+            ->paginate(5)
             ->withQueryString();
 
         return view('reports.index', [
